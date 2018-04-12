@@ -1,32 +1,16 @@
-function f(x){
-    return 3*x + 1;
-}
-
 class Point{
-    /*constructor(x, y){
-        this.x = x;
-        this.y = y;
 
-        this.pX = map(-10, 10, 0, width);
-        this.pY = map(-10, 10, height, 0);
-
-        if(this.y < f(this.x)){
-            this.label = 1;
-        } else {
-            this.label = -1;
-        }
-    }*/
-
+    //Constructor
     constructor(){
-        this.x = random(0, 400);
-        this.y = random(0, 400);
+        //Init a random point between (-10;-10) and (10;10)
+        this.x = random(-10, 10);
+        this.y = random(-10, 10);
 
-        //this.pX = map(-10, 10, 0, 400);
-        //this.pY = map(-10, 10, 400, 0);
+        //Calculate the pixel coordonate on screen (for drawing)
+        this.pX = map(this.x, -10, 10, width, 0);
+        this.pY = map(this.y, -10, 10, 0, height);
 
-        this.pX = this.x;
-        this.pY = this.y;
-
+        //Calculate the label (in order to train the Neural Network)
         if(this.y < f(this.x)){
             this.label = 1;
         } else {
@@ -34,29 +18,45 @@ class Point{
         }
     }
 
+    //Force the X and Y values of the Point
+    setPoint(x, y){
+        this.x = x;
+        this.y = y;
+
+        //Calculate the pixel coordonate on screen (for drawing)
+        this.pX = map(this.x, -10, 10, width, 0);
+        this.pY = map(this.y, -10, 10, 0, height);
+
+        //Calculate the label (in order to train the Neural Network)
+        if(this.y < f(this.x)){
+            this.label = 1;
+        } else {
+            this.label = -1;
+        }
+    }
+
+    //Draw the point
     draw(){
         stroke(0);
 
+        //Visualization of the correct answer
         if(this.label == -1){
             strokeWeight(4);
         } else {
             strokeWeight(2);
         }
 
-        
+        //Draw the point
         ellipse(this.pX, this.pY, 8);
     }
 
+    //Convert the coordonate to an Array[2] usable by the Perceptron
     asInputs(){
-        output = new Array(2);
+        var output = new Array(2);
 
-        output[0] = x;
-        output[1] = y;
+        output[0] = this.x;
+        output[1] = this.y;
 
         return output;
-    }
-
-    fy(){
-        return f(this.x);
     }
 }
