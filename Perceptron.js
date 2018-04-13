@@ -11,6 +11,7 @@ class Perceptron{
         //Init Bias Weight at random (between -1 and 1)
         this.bias = random(-1, 1);
 
+        //Init the activation function
         this.activation = activation;
 
         //Init Learning Rate
@@ -19,9 +20,9 @@ class Perceptron{
 
     //Guess the Output from the Inputs (inputs.lenght == weight.length !!!)
     guess(inputs){
-        var sum = 0;
         
         // ∑(Wi*Xi)+Wb
+        var sum = 0;       
         for (let i = 0; i < inputs.length; i++) {
             sum += inputs[i]*this.weights[i];
         }
@@ -50,7 +51,7 @@ class Perceptron{
         return answer;
     }
 
-    //Draw Perceptron's guessed line
+    //Draw Perceptron's guessed line (for 2D inputs)
     drawGuessLine(){
 
         var w1 = this.weights[0];

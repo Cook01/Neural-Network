@@ -1,5 +1,5 @@
-//Neural Network (Perceptron)
-let neuralNetwork;
+//Perceptron
+let perceptron;
 //Data Set (Array of Points)
 let datas;
 
@@ -19,12 +19,13 @@ function setup() {
 	a = random(-10, 10);
 	b = random(-10, 10);
 
+	//Create an activation function for the Perceptron
 	function activation(input){
 		return (input > 0);
 	}
 
 	//Init Perceptron (2 inputs : x and y)
-	neuralNetwork = new Perceptron(2, activation);
+	perceptron = new Perceptron(2, activation);
 
 	//Init Data Set
 	nbData = floor(random((width*height)/500, (width*height)/250));
@@ -49,14 +50,14 @@ function draw() {
 	line(point1.pX, point1.pY, point2.pX, point2.pY);
 
 	//Draw Perceptron's guessed line
-	neuralNetwork.drawGuessLine();
+	perceptron.drawGuessLine();
 
 	//For each Datas
 	for (let i = 0; i < datas.length; i++) {
 
 		//Guess (or train) the Data
-		//var result = neuralNetwork.guess(datas[i].asInputs());
-		var result = neuralNetwork.train(datas[i].asInputs(),datas[i].label);
+		//var result = perceptron.guess(datas[i].asInputs());
+		var result = perceptron.train(datas[i].asInputs(),datas[i].label);
 
 		//Colorize the Data from the Neural Network's guess
 		if(result == datas[i].label){
