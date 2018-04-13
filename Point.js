@@ -31,7 +31,7 @@ class Point{
     draw(){
         stroke(0);
         strokeWeight(2);
-        var size = 8;
+        var size = 12;
 
         //Visualization of the correct answer
         if(this.label){
