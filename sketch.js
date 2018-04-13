@@ -12,7 +12,6 @@ function f(x){
     return a*x + b;
 }
 
-
 function setup() {
 	createCanvas(windowWidth, windowHeight);
 
@@ -20,8 +19,12 @@ function setup() {
 	a = random(-10, 10);
 	b = random(-10, 10);
 
+	function activation(input){
+		return (input > 0);
+	}
+
 	//Init Perceptron (2 inputs : x and y)
-	neuralNetwork = new Perceptron(2);
+	neuralNetwork = new Perceptron(2, activation);
 
 	//Init Data Set
 	nbData = floor(random((width*height)/500, (width*height)/250));

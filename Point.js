@@ -11,11 +11,7 @@ class Point{
         this.pY = map(this.y, -10, 10, 0, height);
 
         //Calculate the label (in order to train the Neural Network)
-        if(this.y < f(this.x)){
-            this.label = 1;
-        } else {
-            this.label = -1;
-        }
+        this.label = (this.y < f(this.x));
     }
 
     //Force the X and Y values of the Point
@@ -28,26 +24,22 @@ class Point{
         this.pY = map(this.y, -10, 10, 0, height);
 
         //Calculate the label (in order to train the Neural Network)
-        if(this.y < f(this.x)){
-            this.label = 1;
-        } else {
-            this.label = -1;
-        }
+        this.label = (this.y < f(this.x));
     }
 
     //Draw the point
     draw(){
         stroke(0);
+        strokeWeight(2);
+        var size = 8;
 
         //Visualization of the correct answer
-        if(this.label == -1){
-            strokeWeight(4);
+        if(this.label){
+            //Draw the point as circle
+            ellipse(this.pX, this.pY, size);
         } else {
-            strokeWeight(2);
+            rect(this.pX-(size/2), this.pY-(size/2), size, size);
         }
-
-        //Draw the point
-        ellipse(this.pX, this.pY, 8);
     }
 
     //Convert the coordonate to an Array[2] usable by the Perceptron

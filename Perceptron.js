@@ -1,7 +1,7 @@
 class Perceptron{
 
     //Constructor
-    constructor(nbInput){
+    constructor(nbInput, activation){
         //Init Weights at random (between -1 and 1)
         this.weights = new Array(nbInput);
         for (let i = 0; i < this.weights.length; i++) {
@@ -11,18 +11,10 @@ class Perceptron{
         //Init Bias Weight at random (between -1 and 1)
         this.bias = random(-1, 1);
 
+        this.activation = activation;
+
         //Init Learning Rate
         this.learningRate = 0.0001;
-    }
-
-    //Activation Methode
-    activation(sum){
-        
-        if(sum > 0){    //Positive sum => Outpout = 1
-            return 1;
-        } else {        //Negative sum => Outpout = -1
-            return -1;
-        }
     }
 
     //Guess the Output from the Inputs (inputs.lenght == weight.length !!!)
